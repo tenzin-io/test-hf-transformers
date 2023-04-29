@@ -2,6 +2,12 @@ name: My script running
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - ".github/**"
+      - "README.md"
 
 permissions:
   id-token: write
@@ -9,7 +15,7 @@ permissions:
 
 jobs:
   script:
-    runs-on: [self-hosted, homelab]
+    runs-on: [self-hosted, homelab, nvidia]
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
